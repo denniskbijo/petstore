@@ -1,5 +1,6 @@
 package org.elekta.model;
 
+import org.elekta.exception.InvalidAnimalTypeException;
 import org.elekta.util.PetConstants;
 
 
@@ -88,9 +89,9 @@ public abstract class Animal implements PetConstants {
      * @param name      the name of the animal
      * @param age       the age of the animal in years
      * @return a new Animal object of the specified type
-     * @throws IllegalArgumentException if an invalid animal type is specified
+     * @throws InvalidAnimalTypeException if an invalid animal type is specified
      */
-    public static Animal createAnimal(String type, String ownerName, String name, int age) {
+    public static Animal createAnimal(String type, String ownerName, String name, int age) throws InvalidAnimalTypeException {
         switch (type) {
             case DOG:
                 return new Dog(name, age, ownerName);
@@ -101,7 +102,7 @@ public abstract class Animal implements PetConstants {
             case SNAKE:
                 return new Snake(name, age, ownerName);
             default:
-                throw new IllegalArgumentException("Invalid animal type: " + type);
+                throw new InvalidAnimalTypeException("Invalid animal type: " + type);
         }
     }
 }
