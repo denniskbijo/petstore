@@ -19,4 +19,19 @@ public class PetStoreService {
             log.info(animal.toString());
         }
     }
+
+    /**
+     * Sorts the given list of animals by their owner name and displays them.
+     *
+     * @param animals the list of animals to sort and display
+     * @return list of animals sorted by owner name
+     */
+    public List<Animal> sortAnimalsByOwnerName(List<Animal> animals) {
+        // Sort the animals by owner name
+        animals.sort((animal1, animal2) ->
+                animal1.getOwnerName().compareToIgnoreCase(animal2.getOwnerName()));
+
+        return animals;
+    }
+
 }
