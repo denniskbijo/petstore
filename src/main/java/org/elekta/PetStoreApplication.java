@@ -3,7 +3,9 @@ package org.elekta;
 import lombok.extern.java.Log;
 import org.elekta.exception.InvalidAnimalTypeException;
 import org.elekta.model.Animal;
+import org.elekta.service.PetStoreService;
 import org.elekta.util.PetConstants;
+import org.elekta.util.PetType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.List;
  * Represents a pet store that holds a list of animals.
  */
 @Log
-public class PetStore implements PetConstants {
+public class PetStoreApplication implements PetConstants {
 
 
     /**
@@ -22,6 +24,7 @@ public class PetStore implements PetConstants {
      * @throws InvalidAnimalTypeException when invalid animal type is used
      */
     public static void main(String[] args) throws InvalidAnimalTypeException {
+        PetStoreService petStoreService = new PetStoreService();
         List<Animal> animals = new ArrayList<>();
         animals.add(Animal.createAnimal(DOG, "John Smith", "Fido", 7));
         animals.add(Animal.createAnimal(CAT, "John Doe", "Fluffy", 12));
@@ -30,27 +33,12 @@ public class PetStore implements PetConstants {
 
         // TODO add more animals here
 
-        for (Animal animal : animals) {
-            log.info(animal.toString());
-        }
+        //Sort animals by owner name
+        List<Animal> animalsByOwnerName = petStoreService.sortAnimalsByOwnerName(animals);
+        petStoreService.displayAnimals(animalsByOwnerName);
 
-        sortAndDisplayAnimals(animals);
-    }
-
-    /**
-     * Sorts the given list of animals by their owner name and displays them.
-     *
-     * @param animals the list of animals to sort and display
-     */
-    public static void sortAndDisplayAnimals(List<Animal> animals) {
-        // Sort the animals by owner name
-        animals.sort((animal1, animal2) ->
-                animal1.getOwnerName().compareToIgnoreCase(animal2.getOwnerName()));
-
-        // Display the sorted animals
-        for (Animal animal : animals) {
-            log.info(animal.toString());
-        }
+        // Display birds
+        petStoreService.displayAnimals(petStoreService.getAnimalsByType(animals, PetType.BIRD));
     }
 
 
