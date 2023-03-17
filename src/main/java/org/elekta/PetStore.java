@@ -1,5 +1,6 @@
 package org.elekta;
 
+import lombok.extern.java.Log;
 import org.elekta.exception.InvalidAnimalTypeException;
 import org.elekta.model.Animal;
 import org.elekta.util.PetConstants;
@@ -10,6 +11,7 @@ import java.util.List;
 /**
  * Represents a pet store that holds a list of animals.
  */
+@Log
 public class PetStore implements PetConstants {
 
 
@@ -29,7 +31,7 @@ public class PetStore implements PetConstants {
         // TODO add more animals here
 
         for (Animal animal : animals) {
-            System.out.println(animal);
+            log.info(animal.toString());
         }
     }
 }
