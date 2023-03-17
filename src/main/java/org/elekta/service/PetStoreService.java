@@ -2,7 +2,9 @@ package org.elekta.service;
 
 import lombok.extern.java.Log;
 import org.elekta.model.Animal;
+import org.elekta.util.PetType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Log
@@ -33,5 +35,22 @@ public class PetStoreService {
 
         return animals;
     }
+
+    /**
+     * Iterates through the collection of animals and displays only the birds.
+     *
+     * @param animals the collection of animals to iterate through
+     * @return List of animals of a specific {@link PetType}
+     */
+    public List<Animal> getAnimalsByType(List<Animal> animals, PetType petType) {
+        List<Animal> animalsByType = new ArrayList<>();
+        for (Animal animal : animals) {
+            if (animal.getType().equalsIgnoreCase(petType.name())) {
+                animalsByType.add(animal);
+            }
+        }
+        return animalsByType;
+    }
+
 
 }
