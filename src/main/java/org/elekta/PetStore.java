@@ -33,5 +33,25 @@ public class PetStore implements PetConstants {
         for (Animal animal : animals) {
             log.info(animal.toString());
         }
+
+        sortAndDisplayAnimals(animals);
     }
+
+    /**
+     * Sorts the given list of animals by their owner name and displays them.
+     *
+     * @param animals the list of animals to sort and display
+     */
+    public static void sortAndDisplayAnimals(List<Animal> animals) {
+        // Sort the animals by owner name
+        animals.sort((animal1, animal2) ->
+                animal1.getOwnerName().compareToIgnoreCase(animal2.getOwnerName()));
+
+        // Display the sorted animals
+        for (Animal animal : animals) {
+            log.info(animal.toString());
+        }
+    }
+
+
 }
