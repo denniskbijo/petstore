@@ -15,7 +15,7 @@ public class PetStoreService {
      *
      * @param animals the list of animals to display
      */
-    public void displayAnimals(List<Animal> animals) {
+    public void displayAnimals(final List<Animal> animals) {
         // Display the sorted animals
         for (Animal animal : animals) {
             log.info(animal.toString());
@@ -28,7 +28,7 @@ public class PetStoreService {
      * @param animals the list of animals to sort and display
      * @return list of animals sorted by owner name
      */
-    public List<Animal> sortAnimalsByOwnerName(List<Animal> animals) {
+    public List<Animal> sortAnimalsByOwnerName(final List<Animal> animals) {
         // Sort the animals by owner name
         animals.sort((animal1, animal2) ->
                 animal1.getOwnerName().compareToIgnoreCase(animal2.getOwnerName()));
@@ -42,8 +42,8 @@ public class PetStoreService {
      * @param animals the collection of animals to iterate through
      * @return List of animals of a specific {@link PetType}
      */
-    public List<Animal> getAnimalsByType(List<Animal> animals, PetType petType) {
-        List<Animal> animalsByType = new ArrayList<>();
+    public List<Animal> getAnimalsByType(final List<Animal> animals, final PetType petType) {
+        final List<Animal> animalsByType = new ArrayList<>();
         for (Animal animal : animals) {
             if (animal.getType().equalsIgnoreCase(petType.name())) {
                 animalsByType.add(animal);
@@ -53,4 +53,20 @@ public class PetStoreService {
     }
 
 
+    /**
+     * Iterates through the list of animals and returns the list of animals above a minimum minAge.
+     *
+     * @param animals the list of animals to iterate through
+     * @param minAge  Minimum age of the animal
+     * @return List of animals with minAge equal to or above a specific number
+     */
+    public List<Animal> getAnimalsOverTheAge(List<Animal> animals, int minAge) {
+        final List<Animal> animalsOfMinAge = new ArrayList<>();
+        for (Animal animal : animals) {
+            if (animal.getAge() >= minAge) {
+                animalsOfMinAge.add(animal);
+            }
+        }
+        return animalsOfMinAge;
+    }
 }
