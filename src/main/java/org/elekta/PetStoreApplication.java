@@ -33,12 +33,21 @@ public class PetStoreApplication implements PetConstants {
 
         // TODO add more animals here
 
+        log.info("My PetStore Animals");
+        petStoreService.displayAnimals(animals);
+
+        log.info("PetStore Animals sorted by Owner name");
         //Sort animals by owner name
         List<Animal> animalsByOwnerName = petStoreService.sortAnimalsByOwnerName(animals);
         petStoreService.displayAnimals(animalsByOwnerName);
 
+        log.info("PetStore Animals which are birds");
         // Display birds
         petStoreService.displayAnimals(petStoreService.getAnimalsByType(animals, PetType.BIRD));
+
+        log.info("PetStore Animals aged more than 5");
+        //Display pets aged more than 5
+        petStoreService.displayAnimals(petStoreService.getAnimalsOverTheAge(animals, 5));
     }
 
 
