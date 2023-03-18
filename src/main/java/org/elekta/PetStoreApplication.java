@@ -33,6 +33,7 @@ public class PetStoreApplication implements PetConstants {
         animals.add(Animal.createAnimal(DOG, "Dennis Bijo", "Bruni", 1));
         animals.add(Animal.createAnimal(CAT, "Zack Snyder", "Rocket", 3));
         animals.add(Animal.createAnimal(SNAKE, "Bjorn Hale", "Venom", 2));
+        animals.add(Animal.createAnimal(BIRD, "Simon Hague", "Snow", 7));
 
         // add more animals here
 
